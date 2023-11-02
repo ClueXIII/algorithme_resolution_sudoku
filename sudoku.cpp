@@ -122,7 +122,13 @@ bool sudoku::solutionBacktracking(cellule* C[], int k)
 		return true;
 	} else {
 		for (int j = 1; j <= 9; j++){
+				cout << "k = " << k << " j = " << j;
+				cout << " --- ligne[" << C[k]->l << "][" << j << "] = " << ligne[C[k]->l][j];
+				cout << " --- colonne[" << C[k]->c << "][" << j << "] = " << colonne[C[k]->c][j];
+				cout << " --- bloc[" << C[k]->b << "][" << j << "] = " << bloc[C[k]->b][j];
+				cout << endl;
 			if (ligne[C[k]->l][j] != 1 && colonne[C[k]->c][j] != 1 && bloc[C[k]->b][j]!=1){
+				cout << "entrée dans le if" << endl;
 				ligne[C[k]->l][j] = 1;
 				colonne[C[k]->c][j] = 1;
 				bloc[C[k]->b][j] = 1;
