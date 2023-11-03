@@ -60,6 +60,14 @@ sudoku::sudoku(char filename[])
 		string ligne; // ligne du fichier
 		int current; // valeur courante
 		int k = 0; // indice du tableau C contenant les cellules à traiter
+
+	for (int i = 0; i < 9; i++) { // Initialisation des tableaux ligne, colonne et bloc a false
+    	for (int k = 0; k < 9; k++) {
+        	this->ligne[i][k] = false;
+			this->colonne[i][k] = false;
+			this->bloc[i][k] = false;
+    	}
+	}
 		for(int i = 0; i < 9; i++){
 			getline(file, ligne);
 			istringstream flux(ligne);
@@ -70,10 +78,7 @@ sudoku::sudoku(char filename[])
 						this->ligne[i][current] = true;
 						this->colonne[j][current] = true;
 						this->bloc[this->grille[i][j]->b][current] = true;
-					} else {
-						this->ligne[i][current] = false;
-						this->colonne[j][current] = false;
-						this->bloc[this->grille[i][j]->b][current] = false;
+						} else {
 						this->C[k] = grille[i][j];
 						k++;
 					}
@@ -122,13 +127,7 @@ bool sudoku::solutionBacktracking(cellule* C[], int k)
 		return true;
 	} else {
 		for (int j = 1; j <= 9; j++){
-				cout << "k = " << k << " j = " << j;
-				cout << " --- ligne[" << C[k]->l << "][" << j << "] = " << ligne[C[k]->l][j];
-				cout << " --- colonne[" << C[k]->c << "][" << j << "] = " << colonne[C[k]->c][j];
-				cout << " --- bloc[" << C[k]->b << "][" << j << "] = " << bloc[C[k]->b][j];
-				cout << endl;
 			if (ligne[C[k]->l][j] != 1 && colonne[C[k]->c][j] != 1 && bloc[C[k]->b][j]!=1){
-				cout << "entrée dans le if" << endl;
 				ligne[C[k]->l][j] = 1;
 				colonne[C[k]->c][j] = 1;
 				bloc[C[k]->b][j] = 1;
